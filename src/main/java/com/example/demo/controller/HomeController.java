@@ -111,4 +111,11 @@ public class HomeController {
             return "auth/register";
         }
     }
+    
+    // Trang hồ sơ - sẽ chuyển hướng tùy theo vai trò người dùng
+    @GetMapping("/profile")
+    public String profile(Model model) {
+        // Trang này sẽ kiểm tra vai trò của người dùng và chuyển hướng tương ứng
+        return "redirect:/employee/profile"; // Mặc định chuyển hướng đến hồ sơ nhân viên
+    }
 }

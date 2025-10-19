@@ -70,84 +70,144 @@
             <div class="col-md-8 mx-auto">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title mb-0">Cập nhật thông tin cá nhân</h5>
+                        <h5 class="card-title mb-0">Cập nhật hồ sơ người tìm việc</h5>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form id="profile-form">
                             <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="firstName" class="form-label">Họ và tên đệm</label>
-                                    <input type="text" class="form-control" id="firstName" value="Nguyễn Văn">
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="lastName" class="form-label">Tên</label>
-                                    <input type="text" class="form-control" id="lastName" value="A">
+                                <div class="col-md-12 mb-3">
+                                    <label for="fullName" class="form-label">Họ và tên <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="fullName" name="fullName" required>
                                 </div>
                             </div>
                             
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" value="nguyenvana@email.com">
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="phone" class="form-label">Số điện thoại</label>
-                                <input type="tel" class="form-control" id="phone" value="0123456789">
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label">Số điện thoại</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone">
+                                </div>
+                                <div class="col-md-6">
                                     <label for="dateOfBirth" class="form-label">Ngày sinh</label>
-                                    <input type="date" class="form-control" id="dateOfBirth" value="1995-01-01">
+                                    <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth">
                                 </div>
-                                <div class="col-md-6 mb-3">
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6">
                                     <label for="gender" class="form-label">Giới tính</label>
-                                    <select class="form-select" id="gender">
-                                        <option value="Nam" selected>Nam</option>
+                                    <select class="form-select" id="gender" name="gender">
+                                        <option value="">Chọn giới tính</option>
+                                        <option value="Nam">Nam</option>
                                         <option value="Nữ">Nữ</option>
                                         <option value="Khác">Khác</option>
                                     </select>
                                 </div>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="address" class="form-label">Địa chỉ</label>
-                                <input type="text" class="form-control" id="address" value="Quận Ba Đình, Hà Nội">
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-6">
                                     <label for="educationLevel" class="form-label">Trình độ học vấn</label>
-                                    <select class="form-select" id="educationLevel">
+                                    <select class="form-select" id="educationLevel" name="educationLevel">
+                                        <option value="">Chọn trình độ</option>
                                         <option value="Trung cấp">Trung cấp</option>
                                         <option value="Cao đẳng">Cao đẳng</option>
-                                        <option value="Đại học" selected>Đại học</option>
+                                        <option value="Đại học">Đại học</option>
                                         <option value="Thạc sĩ">Thạc sĩ</option>
                                         <option value="Tiến sĩ">Tiến sĩ</option>
                                     </select>
                                 </div>
-                                <div class="col-md-6 mb-3">
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6">
                                     <label for="eduStatus" class="form-label">Tình trạng học vấn</label>
-                                    <select class="form-select" id="eduStatus">
+                                    <select class="form-select" id="eduStatus" name="eduStatus">
+                                        <option value="">Chọn tình trạng</option>
                                         <option value="Đang học">Đang học</option>
-                                        <option value="Đã tốt nghiệp" selected>Đã tốt nghiệp</option>
+                                        <option value="Đã tốt nghiệp">Đã tốt nghiệp</option>
                                         <option value="Nghỉ học">Nghỉ học</option>
                                     </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="totalExperience" class="form-label">Tổng số năm kinh nghiệm</label>
+                                    <input type="number" class="form-control" id="totalExperience" name="totalExperience" step="0.01" min="0">
                                 </div>
                             </div>
                             
                             <div class="mb-3">
-                                <label for="experience" class="form-label">Kinh nghiệm</label>
-                                <textarea class="form-control" id="experience" rows="3">Phát triển các ứng dụng backend với Java, Spring Boot, và MongoDB</textarea>
+                                <label for="experience" class="form-label">Kinh nghiệm làm việc</label>
+                                <textarea class="form-control" id="experience" name="experience" rows="4" placeholder="Mô tả kinh nghiệm làm việc của bạn..."></textarea>
                             </div>
                             
                             <div class="mb-3">
-                                <label for="cvUrl" class="form-label">Upload CV</label>
-                                <input type="file" class="form-control" id="cvUrl">
+                                <label for="bio" class="form-label">Giới thiệu bản thân</label>
+                                <textarea class="form-control" id="bio" name="bio" rows="4" placeholder="Giới thiệu ngắn gọn về bản thân và mục tiêu nghề nghiệp..."></textarea>
                             </div>
                             
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">Cập nhật thông tin</button>
+                            <div class="mb-3">
+                                <label for="cvUrl" class="form-label">Đường dẫn CV</label>
+                                <input type="text" class="form-control" id="cvUrl" name="cvUrl" placeholder="Nhập đường dẫn đến CV của bạn">
+                            </div>
+                            
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="publicProfile" name="publicProfile">
+                                <label class="form-check-label" for="publicProfile">Công khai hồ sơ</label>
+                            </div>
+                            
+                            <hr class="my-4">
+                            
+                            <h5>Thông tin mong muốn</h5>
+                            
+                            <div class="mb-3">
+                                <label for="desiredPosition" class="form-label">Vị trí mong muốn</label>
+                                <input type="text" class="form-control" id="desiredPosition" name="desiredPosition" placeholder="Ví dụ: Lập trình viên Java">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="desiredTime" class="form-label">Thời gian mong muốn</label>
+                                <input type="text" class="form-control" id="desiredTime" name="desiredTime" placeholder="Ví dụ: 8h sáng - 5h chiều">
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="workTimeType" class="form-label">Loại thời gian làm việc</label>
+                                    <select class="form-select" id="workTimeType" name="workTimeType">
+                                        <option value="">Chọn loại thời gian</option>
+                                        <option value="Toàn thời gian">Toàn thời gian</option>
+                                        <option value="Bán thời gian">Bán thời gian</option>
+                                        <option value="Linh hoạt">Linh hoạt</option>
+                                        <option value="Xa">Làm việc từ xa</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="workForm" class="form-label">Hình thức làm việc</label>
+                                    <select class="form-select" id="workForm" name="workForm">
+                                        <option value="">Chọn hình thức</option>
+                                        <option value="Tại văn phòng">Tại văn phòng</option>
+                                        <option value="Làm từ xa">Làm từ xa</option>
+                                        <option value="Linh hoạt">Linh hoạt</option>
+                                        <option value="Kết hợp">Kết hợp</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="salaryType" class="form-label">Loại lương mong muốn</label>
+                                    <select class="form-select" id="salaryType" name="salaryType">
+                                        <option value="">Chọn loại lương</option>
+                                        <option value="Thỏa thuận">Thỏa thuận</option>
+                                        <option value="Theo giờ">Theo giờ</option>
+                                        <option value="Theo tháng">Theo tháng</option>
+                                        <option value="Theo dự án">Theo dự án</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="desiredSalary" class="form-label">Mức lương mong muốn (VNĐ)</label>
+                                    <input type="number" class="form-control" id="desiredSalary" name="desiredSalary" min="0" placeholder="Ví dụ: 15000000">
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="button" class="btn btn-secondary" id="resetBtn">Làm mới</button>
+                                <button type="submit" class="btn btn-primary" id="submitBtn">Lưu hồ sơ</button>
                             </div>
                         </form>
                     </div>
@@ -167,5 +227,7 @@
 
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS for profile handling -->
+    <script src="/js/profile.js"></script>
 </body>
 </html>

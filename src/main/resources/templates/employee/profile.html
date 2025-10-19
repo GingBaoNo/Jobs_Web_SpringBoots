@@ -66,18 +66,18 @@
             </div>
         </div>
         
-        <div class="row">
+        <div class="row" id="profile-content">
             <div class="col-md-4">
                 <div class="card mb-4">
                     <div class="card-body text-center">
                         <div class="profile-picture mb-3">
-                            <i class="fas fa-user fa-5x text-primary"></i>
+                            <i class="fas fa-user fa-5x text-primary" id="profile-avatar"></i>
                         </div>
-                        <h5 class="card-title">Nguyễn Văn A</h5>
-                        <p class="text-muted">Backend Developer</p>
+                        <h5 class="card-title" id="profile-fullname">Đang tải...</h5>
+                        <p class="text-muted" id="profile-position">Đang cập nhật...</p>
                         <div class="d-grid gap-2">
                             <a href="/employee/my-profile" class="btn btn-primary">Chỉnh sửa hồ sơ</a>
-                            <button class="btn btn-outline-primary">Tải CV</button>
+                            <button class="btn btn-outline-primary" id="download-cv-btn">Tải CV</button>
                         </div>
                     </div>
                 </div>
@@ -90,19 +90,27 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <span>Email</span>
-                                <span class="text-muted">nguyenvana@email.com</span>
+                                <span class="text-muted" id="quick-email">Đang tải...</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <span>SĐT</span>
-                                <span class="text-muted">0123456789</span>
+                                <span class="text-muted" id="quick-phone">Đang tải...</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span>Địa chỉ</span>
-                                <span class="text-muted">Hà Nội</span>
+                                <span>Ngày sinh</span>
+                                <span class="text-muted" id="quick-birthdate">Đang tải...</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>Giới tính</span>
+                                <span class="text-muted" id="quick-gender">Đang tải...</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <span>Kinh nghiệm</span>
-                                <span class="text-muted">3 năm</span>
+                                <span class="text-muted" id="quick-experience">Đang tải...</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>Trình độ học vấn</span>
+                                <span class="text-muted" id="quick-education">Đang tải...</span>
                             </li>
                         </ul>
                     </div>
@@ -113,21 +121,21 @@
                 <div class="card mb-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h6 class="mb-0">Thông tin cơ bản</h6>
-                        <button class="btn btn-sm btn-outline-primary">Chỉnh sửa</button>
+                        <a href="/employee/my-profile" class="btn btn-sm btn-outline-primary">Chỉnh sửa</a>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <p><strong>Họ tên:</strong> Nguyễn Văn A</p>
-                                <p><strong>Ngày sinh:</strong> 01/01/1995</p>
-                                <p><strong>Giới tính:</strong> Nam</p>
-                                <p><strong>Số điện thoại:</strong> 0123456789</p>
+                                <p><strong>Họ tên:</strong> <span id="basic-fullname">Đang tải...</span></p>
+                                <p><strong>Ngày sinh:</strong> <span id="basic-birthdate">Đang tải...</span></p>
+                                <p><strong>Giới tính:</strong> <span id="basic-gender">Đang tải...</span></p>
+                                <p><strong>Số điện thoại:</strong> <span id="basic-phone">Đang tải...</span></p>
                             </div>
                             <div class="col-md-6">
-                                <p><strong>Email:</strong> nguyenvana@email.com</p>
-                                <p><strong>Địa chỉ:</strong> Quận Ba Đình, Hà Nội</p>
-                                <p><strong>Trình độ học vấn:</strong> Đại học</p>
-                                <p><strong>Tình trạng học vấn:</strong> Đã tốt nghiệp</p>
+                                <p><strong>Email:</strong> <span id="basic-email">Đang tải...</span></p>
+                                <p><strong>Trình độ học vấn:</strong> <span id="basic-education">Đang tải...</span></p>
+                                <p><strong>Tình trạng học vấn:</strong> <span id="basic-edu-status">Đang tải...</span></p>
+                                <p><strong>CV:</strong> <span id="basic-cv">Đang tải...</span></p>
                             </div>
                         </div>
                     </div>
@@ -136,29 +144,50 @@
                 <div class="card mb-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h6 class="mb-0">Mục tiêu nghề nghiệp</h6>
-                        <button class="btn btn-sm btn-outline-primary">Chỉnh sửa</button>
+                        <a href="/employee/my-profile" class="btn btn-sm btn-outline-primary">Chỉnh sửa</a>
                     </div>
                     <div class="card-body">
-                        <p>Mong muốn tìm một vị trí lập trình viên backend với các công nghệ Java, Spring Boot, và MongoDB để phát triển kỹ năng và đóng góp vào sự phát triển của công ty.</p>
+                        <p id="profile-bio">Đang cập nhật...</p>
+                    </div>
+                </div>
+                
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0">Vị trí mong muốn</h6>
+                        <a href="/employee/my-profile" class="btn btn-sm btn-outline-primary">Chỉnh sửa</a>
+                    </div>
+                    <div class="card-body">
+                        <p id="desired-position">Đang cập nhật...</p>
+                        <p><strong>Thời gian mong muốn:</strong> <span id="desired-time">Đang cập nhật...</span></p>
+                        <p><strong>Loại thời gian làm việc:</strong> <span id="work-time-type">Đang cập nhật...</span></p>
+                        <p><strong>Hình thức làm việc:</strong> <span id="work-form">Đang cập nhật...</span></p>
+                        <p><strong>Loại lương mong muốn:</strong> <span id="salary-type">Đang cập nhật...</span></p>
+                        <p><strong>Mức lương mong muốn:</strong> <span id="desired-salary">Đang cập nhật...</span></p>
                     </div>
                 </div>
                 
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h6 class="mb-0">Kinh nghiệm làm việc</h6>
-                        <button class="btn btn-sm btn-outline-primary">Thêm</button>
+                        <a href="/employee/my-profile" class="btn btn-sm btn-outline-primary">Chỉnh sửa</a>
                     </div>
                     <div class="card-body">
-                        <div class="experience-item mb-3">
-                            <h6>Công ty ABC - Lập trình viên backend</h6>
-                            <p class="text-muted">01/2022 - 06/2023</p>
-                            <p>Phát triển các API RESTful sử dụng Spring Boot và xử lý dữ liệu với MongoDB.</p>
+                        <div id="experience-content">
+                            <p>Đang tải kinh nghiệm...</p>
                         </div>
-                        <div class="experience-item">
-                            <h6>Công ty XYZ - Thực tập sinh lập trình</h6>
-                            <p class="text-muted">06/2021 - 12/2021</p>
-                            <p>Hỗ trợ phát triển ứng dụng web sử dụng Java và Spring Framework.</p>
-                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row d-none" id="no-profile-content">
+            <div class="col-md-8 mx-auto text-center">
+                <div class="card">
+                    <div class="card-body py-5">
+                        <i class="fas fa-user-slash fa-5x text-muted mb-3"></i>
+                        <h4>Chưa có hồ sơ</h4>
+                        <p class="text-muted">Bạn chưa tạo hồ sơ cá nhân. Hãy tạo hồ sơ để nhà tuyển dụng dễ dàng tìm thấy bạn.</p>
+                        <a href="/employee/my-profile" class="btn btn-primary">Tạo hồ sơ ngay</a>
                     </div>
                 </div>
             </div>
@@ -176,5 +205,69 @@
 
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Hàm để tải thông tin hồ sơ
+        async function loadProfile() {
+            try {
+                const response = await fetch('/api/v1/profiles/my-profile');
+                const result = await response.json();
+                
+                if (result.success) {
+                    const profile = result.data;
+                    
+                    // Cập nhật thông tin nhanh
+                    document.getElementById('profile-fullname').textContent = profile.hoTen || 'Chưa cập nhật';
+                    document.getElementById('profile-position').textContent = profile.viTriMongMuon || 'Chưa cập nhật';
+                    document.getElementById('quick-email').textContent = 'Đang cập nhật...'; // Lấy từ thông tin user
+                    document.getElementById('quick-phone').textContent = profile.soDienThoai || 'Chưa cập nhật';
+                    document.getElementById('quick-birthdate').textContent = profile.ngaySinh ? new Date(profile.ngaySinh).toLocaleDateString('vi-VN') : 'Chưa cập nhật';
+                    document.getElementById('quick-gender').textContent = profile.gioiTinh || 'Chưa cập nhật';
+                    document.getElementById('quick-experience').textContent = profile.tongNamKinhNghiem ? profile.tongNamKinhNghiem + ' năm' : 'Chưa cập nhật';
+                    document.getElementById('quick-education').textContent = profile.trinhDoHocVan || 'Chưa cập nhật';
+                    
+                    // Cập nhật thông tin cơ bản
+                    document.getElementById('basic-fullname').textContent = profile.hoTen || 'Chưa cập nhật';
+                    document.getElementById('basic-birthdate').textContent = profile.ngaySinh ? new Date(profile.ngaySinh).toLocaleDateString('vi-VN') : 'Chưa cập nhật';
+                    document.getElementById('basic-gender').textContent = profile.gioiTinh || 'Chưa cập nhật';
+                    document.getElementById('basic-phone').textContent = profile.soDienThoai || 'Chưa cập nhật';
+                    document.getElementById('basic-email').textContent = 'Đang cập nhật...'; // Lấy từ thông tin user
+                    document.getElementById('basic-education').textContent = profile.trinhDoHocVan || 'Chưa cập nhật';
+                    document.getElementById('basic-edu-status').textContent = profile.tinhTrangHocVan || 'Chưa cập nhật';
+                    document.getElementById('basic-cv').textContent = profile.urlCv || 'Chưa cập nhật';
+                    
+                    // Cập nhật mục tiêu nghề nghiệp
+                    document.getElementById('profile-bio').textContent = profile.gioiThieuBanThan || 'Chưa cập nhật';
+                    
+                    // Cập nhật vị trí mong muốn
+                    document.getElementById('desired-position').textContent = profile.viTriMongMuon || 'Chưa cập nhật';
+                    document.getElementById('desired-time').textContent = profile.thoiGianMongMuon || 'Chưa cập nhật';
+                    document.getElementById('work-time-type').textContent = profile.loaiThoiGianLamViec || 'Chưa cập nhật';
+                    document.getElementById('work-form').textContent = profile.hinhThucLamViec || 'Chưa cập nhật';
+                    document.getElementById('salary-type').textContent = profile.loaiLuongMongMuon || 'Chưa cập nhật';
+                    document.getElementById('desired-salary').textContent = profile.mucLuongMongMuon ? profile.mucLuongMongMuon.toLocaleString('vi-VN') + ' VNĐ' : 'Chưa cập nhật';
+                    
+                    // Cập nhật kinh nghiệm làm việc
+                    document.getElementById('experience-content').innerHTML = 
+                        '<p>' + (profile.kinhNghiem || 'Chưa có kinh nghiệm được cập nhật') + '</p>';
+                    
+                    // Ẩn phần chưa có hồ sơ và hiện nội dung hồ sơ
+                    document.getElementById('profile-content').classList.remove('d-none');
+                    document.getElementById('no-profile-content').classList.add('d-none');
+                } else {
+                    // Không tìm thấy hồ sơ, hiện phần thông báo chưa có hồ sơ
+                    document.getElementById('profile-content').classList.add('d-none');
+                    document.getElementById('no-profile-content').classList.remove('d-none');
+                }
+            } catch (error) {
+                console.error('Lỗi khi tải hồ sơ:', error);
+                alert('Lỗi khi tải thông tin hồ sơ');
+            }
+        }
+        
+        // Gọi hàm khi trang được tải
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProfile();
+        });
+    </script>
 </body>
 </html>
