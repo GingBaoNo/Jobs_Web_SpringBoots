@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -13,6 +14,7 @@ public class Company {
 
     @OneToOne
     @JoinColumn(name = "ma_nha_tuyen_dung", nullable = false)
+    @JsonIgnore
     private User user;
 
     @Column(name = "ten_cong_ty", nullable = false)

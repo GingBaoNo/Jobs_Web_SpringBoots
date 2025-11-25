@@ -50,13 +50,15 @@ public class SecurityConfig {
         http
             // For web pages (existing functionality) - keep original configuration
             .authorizeHttpRequests(authz -> authz
-                .requestMatchers("/", "/register", "/login", "/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
+                .requestMatchers("/", "/register", "/login", "/css/**", "/js/**", "/images/**", "/webjars/**", "/uploads/**").permitAll()
                 // Allow public access to job and company pages
                 .requestMatchers("/jobs/**", "/companies/**", "/job/**", "/company/**").permitAll()
                 // API authentication endpoints
                 .requestMatchers("/api/auth/**").permitAll()
                 // API job detail endpoints for Android
                 .requestMatchers("/api/v1/job-details/**").permitAll()
+                // API company endpoints for Android
+                .requestMatchers("/api/v1/companies/**").permitAll()
                 // Admin endpoints
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 // Employer endpoints

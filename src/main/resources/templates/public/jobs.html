@@ -295,12 +295,13 @@
                             <div class="card-body">
                                 <div class="d-flex align-items-start mb-3">
                                     <div class="flex-shrink-0">
-                                        <i class="fas fa-building fa-2x text-primary"></i>
+                                        <img th:if="${job.company.hinhAnhCty}" th:src="${job.company.hinhAnhCty}" alt="Logo" class="company-logo">
+                                        <i th:unless="${job.company.hinhAnhCty}" class="fas fa-building fa-2x text-primary"></i>
                                     </div>
                                     <div class="flex-grow-1 ms-3">
                                         <h5 class="card-title mb-1">
-                                            <a th:href="@{/jobs/{id}(id=${job.maCongViec})}" 
-                                               th:text="${job.tieuDe}" 
+                                            <a th:href="@{/jobs/{id}(id=${job.maCongViec})}"
+                                               th:text="${job.tieuDe}"
                                                class="text-decoration-none text-dark">
                                                 Tiêu đề công việc
                                             </a>
