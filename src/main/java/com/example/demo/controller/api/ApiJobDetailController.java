@@ -67,6 +67,15 @@ public class ApiJobDetailController {
         return ApiResponseUtil.noContent();
     }
 
+    @GetMapping("/featured")
+    public ResponseEntity<?> getFeaturedJobs() {
+        // Lấy các công việc nổi bật - những công việc được duyệt, còn hiệu lực và có nhiều lượt xem
+        List<JobDetail> featuredJobs = jobDetailService.getFeaturedJobs();
+        // Tạo danh sách job đơn giản để tránh circular reference
+        List<Map<String, Object>> simplifiedJobs = featuredJobs.stream().map(this::convertJobDetailToMap).toList();
+        return ApiResponseUtil.success("Featured jobs retrieved successfully", simplifiedJobs);
+    }
+
     // Helper method để chuyển đổi JobDetail thành Map để tránh circular reference
     private Map<String, Object> convertJobDetailToMap(JobDetail job) {
         Map<String, Object> jobMap = new HashMap<>();
@@ -83,6 +92,8 @@ public class ApiJobDetailController {
         jobMap.put("thoiHanLamViec", job.getThoiHanLamViec());
         jobMap.put("coTheThuongLuongNgay", job.getCoTheThuongLuongNgay());
         jobMap.put("chiTiet", job.getChiTiet());
+        jobMap.put("yeuCauCongViec", job.getYeuCauCongViec());  // Thêm trường mới
+        jobMap.put("quyenLoi", job.getQuyenLoi());              // Thêm trường mới
         jobMap.put("ngayKetThucTuyenDung", job.getNgayKetThucTuyenDung());
         jobMap.put("ngayDang", job.getNgayDang());
         jobMap.put("luotXem", job.getLuotXem());

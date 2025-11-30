@@ -64,6 +64,14 @@ public class JobDetail {
     @Column(name = "chi_tiet")
     private String chiTiet;
 
+    @Lob
+    @Column(name = "yeu_cau_cong_viec")
+    private String yeuCauCongViec;
+
+    @Lob
+    @Column(name = "quyen_loi")
+    private String quyenLoi;
+
     @Column(name = "ngay_ket_thuc_tuyen_dung")
     private LocalDate ngayKetThucTuyenDung;
 
@@ -257,5 +265,21 @@ public class JobDetail {
 
     public void setTrangThaiTinTuyen(String trangThaiTinTuyen) {
         this.trangThaiTinTuyen = trangThaiTinTuyen;
+    }
+
+    public String getYeuCauCongViec() {
+        return yeuCauCongViec;
+    }
+
+    public void setYeuCauCongViec(String yeuCauCongViec) {
+        this.yeuCauCongViec = yeuCauCongViec;
+    }
+
+    public String getQuyenLoi() {
+        return quyenLoi;
+    }
+
+    public void setQuyenLoi(String quyenLoi) {
+        this.quyenLoi = quyenLoi;
     }
 }

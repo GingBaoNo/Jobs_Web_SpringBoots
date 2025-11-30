@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+import com.example.demo.config.JwtAuthenticationFilter;
 import com.example.demo.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -46,7 +47,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
         http
             // For web pages (existing functionality) - keep original configuration
             .authorizeHttpRequests(authz -> authz
@@ -59,6 +60,12 @@ public class SecurityConfig {
                 .requestMatchers("/api/v1/job-details/**").permitAll()
                 // API company endpoints for Android
                 .requestMatchers("/api/v1/companies/**").permitAll()
+                // API profile endpoints - cần xác thực
+                .requestMatchers("/api/v1/profiles/**").authenticated()
+                // API applied jobs endpoints - cần xác thực
+                .requestMatchers("/api/v1/applied-jobs/**").authenticated()
+                // API saved jobs endpoints - cần xác thực
+                .requestMatchers("/api/v1/saved-jobs/**").authenticated()
                 // Admin endpoints
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 // Employer endpoints
@@ -80,7 +87,8 @@ public class SecurityConfig {
                 .logoutSuccessUrl("/")
                 .permitAll()
             )
-            .csrf(AbstractHttpConfigurer::disable); // Disable CSRF for development
+            .csrf(AbstractHttpConfigurer::disable) // Disable CSRF for development
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

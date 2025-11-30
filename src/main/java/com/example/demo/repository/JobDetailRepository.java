@@ -19,6 +19,8 @@ public interface JobDetailRepository extends JpaRepository<JobDetail, Integer> {
     List<JobDetail> findByNgayKetThucTuyenDungAfterAndTrangThaiDuyetAndTrangThaiTinTuyen(LocalDate ngayHienTai, String trangThaiDuyet, String trangThaiTinTuyen);
     List<JobDetail> findByWorkField(WorkField workField);
     
+    List<JobDetail> findTop10ByTrangThaiDuyetAndTrangThaiTinTuyenOrderByLuotXemDesc(String trangThaiDuyet, String trangThaiTinTuyen);
+
     @Query("SELECT j FROM JobDetail j WHERE j.tieuDe LIKE %:keyword% OR j.chiTiet LIKE %:keyword%")
     List<JobDetail> findByTieuDeContainingOrChiTietContaining(@Param("keyword") String keyword);
 }

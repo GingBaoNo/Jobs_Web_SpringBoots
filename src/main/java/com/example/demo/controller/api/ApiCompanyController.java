@@ -41,6 +41,13 @@ public class ApiCompanyController {
         return ApiResponseUtil.success("Verified companies retrieved successfully", companies);
     }
 
+    @GetMapping("/featured")
+    public ResponseEntity<?> getFeaturedCompanies() {
+        // Lấy các công ty nổi bật - các công ty đã xác thực và có nhiều việc làm
+        List<Company> featuredCompanies = companyService.getFeaturedCompanies();
+        return ApiResponseUtil.success("Featured companies retrieved successfully", featuredCompanies);
+    }
+
     @GetMapping("/search")
     public ResponseEntity<?> searchCompanies(@RequestParam String keyword) {
         if (keyword == null || keyword.trim().isEmpty()) {
@@ -109,6 +116,8 @@ public class ApiCompanyController {
             jobMap.put("thoiHanLamViec", job.getThoiHanLamViec());
             jobMap.put("coTheThuongLuongNgay", job.getCoTheThuongLuongNgay());
             jobMap.put("chiTiet", job.getChiTiet());
+            jobMap.put("yeuCauCongViec", job.getYeuCauCongViec());  // Thêm trường mới
+            jobMap.put("quyenLoi", job.getQuyenLoi());              // Thêm trường mới
             jobMap.put("ngayKetThucTuyenDung", job.getNgayKetThucTuyenDung());
             jobMap.put("ngayDang", job.getNgayDang());
             jobMap.put("luotXem", job.getLuotXem());

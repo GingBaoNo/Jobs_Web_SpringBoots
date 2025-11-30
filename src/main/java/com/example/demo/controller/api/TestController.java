@@ -19,7 +19,7 @@ public class TestController {
     
     @GetMapping("/health")
     public ResponseEntity<?> health() {
-        return ApiResponseUtil.success("API is healthy and running.", 
+        return ApiResponseUtil.success("API is healthy and running",
             java.time.LocalDateTime.now().toString());
     }
 }

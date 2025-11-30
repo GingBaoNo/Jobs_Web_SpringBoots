@@ -50,11 +50,20 @@ public class AdminController {
         List<JobDetail> allJobs = jobDetailService.getAllJobs();
         List<JobDetail> pendingJobs = jobDetailService.getJobsByTrangThaiDuyet("Chờ duyệt");
         List<JobDetail> approvedJobs = jobDetailService.getJobsByTrangThaiDuyet("Đã duyệt");
-        
+        List<Company> companies = companyService.getAllCompanies();
+
+        // Lấy 5 công việc mới nhất theo ngày đăng
+        List<JobDetail> recentJobs = allJobs.stream()
+            .sorted((j1, j2) -> j2.getNgayDang().compareTo(j1.getNgayDang()))
+            .limit(5)
+            .toList();
+
         model.addAttribute("users", users);
         model.addAttribute("allJobs", allJobs);
         model.addAttribute("pendingJobs", pendingJobs);
         model.addAttribute("approvedJobs", approvedJobs);
+        model.addAttribute("companies", companies);
+        model.addAttribute("recentJobs", recentJobs);
         model.addAttribute("title", "Bảng điều khiển Admin");
         return "admin/dashboard";
     }

@@ -97,15 +97,23 @@ public class JobController {
             // Đặt trạng thái mặc định
             job.setTrangThaiDuyet("Chờ duyệt");
             job.setTrangThaiTinTuyen("Mở");
-            
+
             // Đặt ngày đăng là ngày hiện tại nếu chưa có
             if (job.getNgayDang() == null) {
                 job.setNgayDang(java.time.LocalDateTime.now());
             }
-            
+
             // Đặt ngày hết hạn nếu chưa có
             if (job.getNgayKetThucTuyenDung() == null) {
                 job.setNgayKetThucTuyenDung(LocalDate.now().plusDays(30));
+            }
+
+            // Đặt giá trị mặc định cho các trường mới nếu chưa có
+            if (job.getYeuCauCongViec() == null) {
+                job.setYeuCauCongViec("");
+            }
+            if (job.getQuyenLoi() == null) {
+                job.setQuyenLoi("");
             }
             
             JobDetail savedJob = jobDetailService.saveJob(job);
@@ -189,6 +197,8 @@ public class JobController {
             existingJob.setThoiHanLamViec(job.getThoiHanLamViec());
             existingJob.setCoTheThuongLuongNgay(job.getCoTheThuongLuongNgay());
             existingJob.setChiTiet(job.getChiTiet());
+            existingJob.setYeuCauCongViec(job.getYeuCauCongViec());
+            existingJob.setQuyenLoi(job.getQuyenLoi());
             existingJob.setNgayKetThucTuyenDung(job.getNgayKetThucTuyenDung());
             
             // Chỉ cập nhật trạng thái nếu công việc chưa được duyệt

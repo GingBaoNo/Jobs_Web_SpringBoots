@@ -63,6 +63,11 @@ public class JobDetailService {
         jobDetailRepository.deleteById(id);
     }
     
+    public List<JobDetail> getFeaturedJobs() {
+        // Lấy các công việc nổi bật: những công việc được duyệt, còn hiệu lực và có nhiều lượt xem
+        return jobDetailRepository.findTop10ByTrangThaiDuyetAndTrangThaiTinTuyenOrderByLuotXemDesc("Đã duyệt", "Mở");
+    }
+
     public void incrementViewCount(JobDetail jobDetail) {
         jobDetail.setLuotXem(jobDetail.getLuotXem() + 1);
         jobDetailRepository.save(jobDetail);

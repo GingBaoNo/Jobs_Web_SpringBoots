@@ -85,9 +85,21 @@
                                     </div>
                                     
                                     <div class="mb-3">
-                                        <label for="chiTiet" class="form-label">Chi tiết công việc <span class="text-danger">*</span></label>
+                                        <label for="chiTiet" class="form-label">Mô tả công việc <span class="text-danger">*</span></label>
                                         <textarea class="form-control" id="chiTiet" rows="5" th:field="*{chiTiet}" required></textarea>
-                                        <div class="form-text">Mô tả chi tiết công việc, yêu cầu công việc, quyền lợi...</div>
+                                        <div class="form-text">Mô tả chi tiết về công việc</div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="yeuCauCongViec" class="form-label">Yêu cầu công việc <span class="text-danger">*</span></label>
+                                        <textarea class="form-control" id="yeuCauCongViec" rows="3" th:field="*{yeuCauCongViec}" required></textarea>
+                                        <div class="form-text">Mô tả các yêu cầu cụ thể cho ứng viên</div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="quyenLoi" class="form-label">Quyền lợi <span class="text-danger">*</span></label>
+                                        <textarea class="form-control" id="quyenLoi" rows="3" th:field="*{quyenLoi}" required></textarea>
+                                        <div class="form-text">Mô tả các quyền lợi mà ứng viên sẽ nhận được</div>
                                     </div>
                                 </div>
                                 

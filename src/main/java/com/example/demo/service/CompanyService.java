@@ -20,6 +20,9 @@ public class CompanyService {
     @Autowired
     private CompanyRepository companyRepository;
 
+    @Autowired
+    private JobDetailService jobDetailService;
+
     public List<Company> getAllCompanies() {
         return companyRepository.findAll();
     }
@@ -154,5 +157,20 @@ public class CompanyService {
             // Nếu không có file mới, không làm gì cả
             return company;
         }
+    }
+
+    public List<Company> getFeaturedCompanies() {
+        // Lấy các công ty đã xác thực
+        List<Company> verifiedCompanies = companyRepository.findByDaXacThuc(true);
+
+        // Sắp xếp theo số lượng công việc giảm dần
+        return verifiedCompanies.stream()
+            .sorted((comp1, comp2) -> {
+                long jobCount1 = jobDetailService.getJobsByCompany(comp1).size();
+                long jobCount2 = jobDetailService.getJobsByCompany(comp2).size();
+                return Long.compare(jobCount2, jobCount1); // Sắp xếp giảm dần
+            })
+            .limit(10) // Giới hạn lại 10 công ty nổi bật
+            .toList();
     }
 }

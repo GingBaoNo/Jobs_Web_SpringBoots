@@ -11,8 +11,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/profiles")
@@ -28,20 +31,27 @@ public class ApiProfileController {
     @GetMapping
     public ResponseEntity<?> getAllProfiles() {
         List<Profile> profiles = profileService.getAllProfiles();
-        return ApiResponseUtil.success("Profiles retrieved successfully", profiles);
+        List<Map<String, Object>> profileList = profiles.stream()
+            .map(this::convertProfileToMap)
+            .collect(Collectors.toList());
+        return ApiResponseUtil.success("Profiles retrieved successfully", profileList);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getProfileById(@PathVariable Integer id) {
         return profileService.getProfileById(id)
-            .map(profile -> ApiResponseUtil.success("Profile retrieved successfully", profile))
+            .map(profile -> {
+                Map<String, Object> profileMap = convertProfileToMap(profile);
+                return ApiResponseUtil.success("Profile retrieved successfully", profileMap);
+            })
             .orElse(ApiResponseUtil.error("Profile not found with id: " + id));
     }
 
     @PostMapping
     public ResponseEntity<?> createProfile(@RequestBody Profile profile) {
         Profile savedProfile = profileService.saveProfile(profile);
-        return ApiResponseUtil.created(savedProfile);
+        Map<String, Object> profileMap = convertProfileToMap(savedProfile);
+        return ApiResponseUtil.created(profileMap);
     }
 
     @PutMapping("/{id}")
@@ -51,7 +61,8 @@ public class ApiProfileController {
         }
         profile.setMaHoSo(id);
         Profile updatedProfile = profileService.updateProfile(profile);
-        return ApiResponseUtil.success("Profile updated successfully", updatedProfile);
+        Map<String, Object> profileMap = convertProfileToMap(updatedProfile);
+        return ApiResponseUtil.success("Profile updated successfully", profileMap);
     }
 
     @DeleteMapping("/{id}")
@@ -73,7 +84,9 @@ public class ApiProfileController {
             if (user.isPresent()) {
                 Optional<Profile> profile = profileService.getProfileByUser(user.get());
                 if (profile.isPresent()) {
-                    return ApiResponseUtil.success("Profile retrieved successfully", profile.get());
+                    // Chuyển đổi profile sang dạng map để tránh circular reference
+                    Map<String, Object> profileMap = convertProfileToMap(profile.get());
+                    return ApiResponseUtil.success("Profile retrieved successfully", profileMap);
                 } else {
                     return ApiResponseUtil.error("Profile not found for current user");
                 }
@@ -114,7 +127,8 @@ public class ApiProfileController {
                     createdProfile.setMucLuongMongMuon(profile.getMucLuongMongMuon());
                     
                     Profile savedProfile = profileService.updateProfile(createdProfile);
-                    return ApiResponseUtil.created(savedProfile);
+                    Map<String, Object> profileMap = convertProfileToMap(savedProfile);
+                    return ApiResponseUtil.created(profileMap);
                 } catch (RuntimeException e) {
                     return ApiResponseUtil.error(e.getMessage());
                 }
@@ -159,7 +173,8 @@ public class ApiProfileController {
                     updatedProfile.setNgayCapNhat(java.time.LocalDateTime.now());
                     
                     Profile savedProfile = profileService.updateProfile(updatedProfile);
-                    return ApiResponseUtil.success("Profile updated successfully", savedProfile);
+                    Map<String, Object> profileMap = convertProfileToMap(savedProfile);
+                    return ApiResponseUtil.success("Profile updated successfully", profileMap);
                 } else {
                     return ApiResponseUtil.error("Profile not found for current user");
                 }
@@ -169,5 +184,33 @@ public class ApiProfileController {
         } else {
             return ApiResponseUtil.error("User not authenticated");
         }
+    }
+
+    // Helper method để chuyển đổi Profile sang Map để tránh circular reference
+    private Map<String, Object> convertProfileToMap(Profile profile) {
+        Map<String, Object> profileMap = new HashMap<>();
+        profileMap.put("maHoSo", profile.getMaHoSo());
+        profileMap.put("hoTen", profile.getHoTen());
+        profileMap.put("gioiTinh", profile.getGioiTinh());
+        profileMap.put("ngaySinh", profile.getNgaySinh());
+        profileMap.put("soDienThoai", profile.getSoDienThoai());
+        profileMap.put("trinhDoHocVan", profile.getTrinhDoHocVan());
+        profileMap.put("tinhTrangHocVan", profile.getTinhTrangHocVan());
+        profileMap.put("kinhNghiem", profile.getKinhNghiem());
+        profileMap.put("tongNamKinhNghiem", profile.getTongNamKinhNghiem());
+        profileMap.put("gioiThieuBanThan", profile.getGioiThieuBanThan());
+        profileMap.put("urlAnhDaiDien", profile.getUrlAnhDaiDien());
+        profileMap.put("urlCv", profile.getUrlCv());
+        profileMap.put("congKhai", profile.getCongKhai());
+        profileMap.put("viTriMongMuon", profile.getViTriMongMuon());
+        profileMap.put("thoiGianMongMuon", profile.getThoiGianMongMuon());
+        profileMap.put("loaiThoiGianLamViec", profile.getLoaiThoiGianLamViec());
+        profileMap.put("hinhThucLamViec", profile.getHinhThucLamViec());
+        profileMap.put("loaiLuongMongMuon", profile.getLoaiLuongMongMuon());
+        profileMap.put("mucLuongMongMuon", profile.getMucLuongMongMuon());
+        profileMap.put("ngayTao", profile.getNgayTao());
+        profileMap.put("ngayCapNhat", profile.getNgayCapNhat());
+        // Không bao gồm thông tin user để tránh circular reference
+        return profileMap;
     }
 }

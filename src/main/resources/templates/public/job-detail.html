@@ -216,62 +216,23 @@
                 <!-- Job Requirements -->
                 <div class="job-detail-card p-4 mb-4">
                     <h3 class="section-title">Yêu cầu công việc</h3>
-                    <ul class="list-unstyled">
-                        <li class="mb-2" th:if="${job.gioiTinhYeuCau != null and #strings.length(job.gioiTinhYeuCau) > 0}">
-                            <i class="fas fa-check-circle text-success me-2"></i> 
-                            <span>Giới tính: </span>
-                            <span th:text="${job.gioiTinhYeuCau}">Giới tính yêu cầu</span>
-                        </li>
-                        <li class="mb-2" th:if="${job.soLuongTuyen != null}">
-                            <i class="fas fa-check-circle text-success me-2"></i> 
-                            <span>Số lượng tuyển: </span>
-                            <span th:text="${job.soLuongTuyen} + ' người'">Số lượng người</span>
-                        </li>
-                        <li class="mb-2" th:if="${job.ngayLamViec != null}">
-                            <i class="fas fa-check-circle text-success me-2"></i> 
-                            <span>Ngày làm việc: </span>
-                            <span th:text="${job.ngayLamViec}">Ngày làm việc</span>
-                        </li>
-                        <li class="mb-2" th:if="${job.thoiHanLamViec != null}">
-                            <i class="fas fa-check-circle text-success me-2"></i> 
-                            <span>Thời hạn làm việc: </span>
-                            <span th:text="${job.thoiHanLamViec}">Thời hạn làm việc</span>
-                        </li>
-                        <li class="mb-2" th:if="${job.gioBatDau != null and job.gioKetThuc != null}">
-                            <i class="fas fa-check-circle text-success me-2"></i> 
-                            <span>Giờ làm việc: </span>
-                            <span th:text="${#temporals.format(job.gioBatDau, 'HH:mm')} + ' - ' + ${#temporals.format(job.gioKetThuc, 'HH:mm')}">Giờ làm việc</span>
-                        </li>
-                    </ul>
+                    <div class="job-requirements" th:if="${job.yeuCauCongViec != null and #strings.length(job.yeuCauCongViec) > 0}">
+                        <p th:text="${job.yeuCauCongViec}"></p>
+                    </div>
+                    <div th:unless="${job.yeuCauCongViec != null and #strings.length(job.yeuCauCongViec) > 0}">
+                        <p class="text-muted">Không có yêu cầu công việc cụ thể được cung cấp.</p>
+                    </div>
                 </div>
 
                 <!-- Job Benefits -->
                 <div class="job-detail-card p-4 mb-4">
                     <h3 class="section-title">Quyền lợi</h3>
-                    <ul class="list-unstyled">
-                        <li class="mb-2" th:if="${job.coTheThuongLuongGio != null}">
-                            <i class="fas fa-star text-warning me-2"></i> 
-                            <span>Thưởng lương giờ: </span>
-                            <span th:text="${job.coTheThuongLuongGio}">Thông tin thưởng lương giờ</span>
-                        </li>
-                        <li class="mb-2" th:if="${job.coTheThuongLuongNgay != null}">
-                            <i class="fas fa-star text-warning me-2"></i> 
-                            <span>Thưởng lương ngày: </span>
-                            <span th:text="${job.coTheThuongLuongNgay}">Thông tin thưởng lương ngày</span>
-                        </li>
-                        <li class="mb-2">
-                            <i class="fas fa-star text-warning me-2"></i> 
-                            <span>Môi trường làm việc chuyên nghiệp</span>
-                        </li>
-                        <li class="mb-2">
-                            <i class="fas fa-star text-warning me-2"></i> 
-                            <span>Cơ hội thăng tiến rõ ràng</span>
-                        </li>
-                        <li class="mb-2">
-                            <i class="fas fa-star text-warning me-2"></i> 
-                            <span>Các chế độ phúc lợi khác</span>
-                        </li>
-                    </ul>
+                    <div class="job-benefits" th:if="${job.quyenLoi != null and #strings.length(job.quyenLoi) > 0}">
+                        <p th:text="${job.quyenLoi}"></p>
+                    </div>
+                    <div th:unless="${job.quyenLoi != null and #strings.length(job.quyenLoi) > 0}">
+                        <p class="text-muted">Không có quyền lợi cụ thể được cung cấp.</p>
+                    </div>
                 </div>
             </div>
 
