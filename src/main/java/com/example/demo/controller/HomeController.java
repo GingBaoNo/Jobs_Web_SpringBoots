@@ -3,9 +3,13 @@ package com.example.demo.controller;
 import com.example.demo.entity.Role;
 import com.example.demo.entity.User;
 import com.example.demo.entity.JobDetail;
+import com.example.demo.entity.WorkField;
+import com.example.demo.entity.WorkType;
 import com.example.demo.service.RoleService;
 import com.example.demo.service.UserService;
 import com.example.demo.service.JobDetailService;
+import com.example.demo.service.WorkFieldService;
+import com.example.demo.service.WorkTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -29,7 +33,13 @@ public class HomeController {
     
     @Autowired
     private JobDetailService jobDetailService;
-    
+
+    @Autowired
+    private WorkFieldService workFieldService;
+
+    @Autowired
+    private WorkTypeService workTypeService;
+
     @GetMapping("/")
     public String home(Model model) {
         // Lấy các công việc đã được duyệt và còn hiệu lực (chưa hết hạn)
@@ -55,6 +65,8 @@ public class HomeController {
         
         model.addAttribute("jobs", activeJobs); // For active jobs display
         model.addAttribute("allApprovedJobs", combinedJobs); // For main display on home page
+        model.addAttribute("workFields", workFieldService.getAllWorkFields());
+        model.addAttribute("workTypes", workTypeService.getAllWorkTypes());
         model.addAttribute("title", "Trang chủ - Hệ Thống Tìm Kiếm Việc Làm");
         return "index";
     }
